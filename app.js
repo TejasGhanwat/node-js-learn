@@ -1,8 +1,13 @@
 const express = require("express");
 const app = express();
-const { getPosts } = require("./routes/post.js");
+const postRoutes = require("./routes/post");
+const morgan = require("morgan");
 
-app.get("/", getPosts);
+//MIddleware
+
+app.use(morgan("dev"));
+
+app.use("/", postRoutes);
 
 const port = 8080;
 
