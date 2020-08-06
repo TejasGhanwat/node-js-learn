@@ -4,6 +4,8 @@ const postRoutes = require("./routes/post");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const expressValidator = require("express-validator");
 
 //MIddleware
 dotenv.config();
@@ -16,6 +18,7 @@ mongoose.connection.on("error", (err) => {
   console.log(`DB Connection error:${err.message}`);
 });
 
+app.use(bodyParser.json());
 app.use(morgan("dev"));
 app.use("/", postRoutes);
 const port = process.env.port || 8080;
